@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
 import React from 'react';
+import CertificationSection from '../components/certification-section';
 
 import Header from '../components/header';
 import Layout from '../components/layout';
@@ -12,26 +13,28 @@ import SectionSkills from '../components/section-skills';
 import SEO from '../components/seo';
 
 const Index = ({ data }) => {
-  const about = get(data, 'site.siteMetadata.about', false);
-  const projects = get(data, 'site.siteMetadata.projects', false);
-  const posts = data.allMarkdownRemark.edges;
-  const experience = get(data, 'site.siteMetadata.experience', false);
-  const skills = get(data, 'site.siteMetadata.skills', false);
-  const noBlog = !posts || !posts.length;
+    const about = get(data, 'site.siteMetadata.about', false);
+    const projects = get(data, 'site.siteMetadata.projects', false);
+    const posts = data.allMarkdownRemark.edges;
+    const experience = get(data, 'site.siteMetadata.experience', false);
+    const skills = get(data, 'site.siteMetadata.skills', false);
+    const certifications = get(data, 'site.siteMetadata.certifications', false);
+    const noBlog = !posts || !posts.length;
 
-  return (
-    <Layout>
-      <SEO />
-      <Header metadata={data.site.siteMetadata} noBlog={noBlog} />
-      {about && <SectionAbout about={about} />}
-      {projects && projects.length && <SectionProjects projects={projects} />}
-      {!noBlog && <SectionBlog posts={posts} />}
-      {experience && experience.length && (
-        <SectionExperience experience={experience} />
-      )}
-      {skills && skills.length && <SectionSkills skills={skills} />}
-    </Layout>
-  );
+    return (
+        <Layout>
+            <SEO />
+            <Header metadata={data.site.siteMetadata} noBlog={noBlog} />
+            {about && <SectionAbout about={about} />}
+            {projects && projects.length && <SectionProjects projects={projects} />}
+            {!noBlog && <SectionBlog posts={posts} />}
+            {experience && experience.length && (
+                <SectionExperience experience={experience} />
+            )}
+            {skills && skills.length && <SectionSkills skills={skills} />}
+            {certifications && certifications.length && <CertificationSection certifications={certifications} />}
+        </Layout>
+    );
 };
 
 export default Index;
@@ -55,6 +58,12 @@ export const pageQuery = graphql`
         experience {
           name
           description
+          link
+        }
+        certifications {
+          name
+          date_acquired
+          date_expired
           link
         }
         skills {

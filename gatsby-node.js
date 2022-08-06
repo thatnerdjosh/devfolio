@@ -78,12 +78,19 @@ exports.createSchemaCustomization = ({ actions }) => {
       projects: [SectionItem]
       experience: [SectionItem]
       skills: [SectionItem]
+      certifications: [CertificateSectionItem]
     }
 
     type SectionItem {
       name: String!
       description: String!
       link: String!
+    }
+
+    type CertificateSectionItem {
+      SectionItem
+      date_acquired: Date @dateformat
+      date_expired: Date @dateformat
     }
 
     type MarkdownRemark implements Node {
