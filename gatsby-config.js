@@ -49,11 +49,14 @@ module.exports = {
         description: 'Full-Stack Developer, December 2017 - February 2020',
         link: 'https://github.com/RyanFitzgerald/devfolio',
       },
+    certifications: [
       {
-        name: 'Hooli',
-        description: 'Full-Stack Developer, May 2015 - December 2017',
-        link: 'https://github.com/RyanFitzgerald/devfolio',
-      },
+        name: 'GCP Associate Cloud Engineer',
+        description: '',
+        date_acquired: 'Aug 05, 2022',
+        date_expired: 'Aug 05, 2026',
+        link: ''
+      }
     ],
     // Optional: List your skills, they must have `name` and `description`.
     skills: [
